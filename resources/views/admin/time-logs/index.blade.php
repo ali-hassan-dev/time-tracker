@@ -10,6 +10,7 @@
         <table class="min-w-full bg-white border border-gray-300 shadow-lg rounded-lg">
             <thead class="bg-gray-200">
                 <tr>
+                    <th class="py-3 px-4 border-b text-center">#</th>
                     <th class="py-3 px-4 border-b text-center">Login Time</th>
                     <th class="py-3 px-4 border-b text-center">Logout Time</th>
                     <th class="py-3 px-4 border-b text-center">Talk Type</th>
@@ -23,8 +24,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($timeLogs as $timeLog)
+                @foreach($timeLogs as $key => $timeLog)
                 <tr class="hover:bg-gray-50">
+                    <td class="py-3 px-4 border-b text-center">{{ $key + 1 }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->login_time ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_type ?? '-' }}</td>
