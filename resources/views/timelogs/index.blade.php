@@ -16,6 +16,12 @@
         <h2 class="text-3xl font-semibold text-gray-700">Your Time Logs</h2>
     </div>
 
+    <div class="flex justify-center mb-6">
+        <a href="{{ route('employees.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
+            View All Employees
+        </a>
+    </div>
+
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-300 shadow-lg rounded-lg">
             <thead class="bg-gray-200">
