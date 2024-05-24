@@ -17,8 +17,6 @@ Route::view('profile', 'profile')
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/timelogs', [TimeLogController::class, 'index'])->name('timelogs.index');
-    Route::post('/timelogs/start', [TimeLogController::class, 'start'])->name('timelogs.start');
-    Route::post('/timelogs/{id}/stop', [TimeLogController::class, 'stop'])->name('timelogs.stop');
 });
 
 Route::get('/employees', [EmployeeController::class, 'index'])->middleware('auth')->name('employees.index');
