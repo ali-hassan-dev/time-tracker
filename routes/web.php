@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminTimeLogController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TimeLogController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/employees', [EmployeeController::class, 'index'])->middleware('auth')->name('employees.index');
+
+Route::middleware(['auth', 'can:access-admin'])->group(function () {
+    Route::get('/admin/users/{user}/time-logs', [AdminTimeLogController::class, 'index'])->name('admin.users.time-logs.index');
+    Route::get('/admin/users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->name('admin.users.time-logs.edit');
+    Route::put('/admin/users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->name('admin.users.time-logs.update');
+});
 
 require __DIR__ . '/auth.php';

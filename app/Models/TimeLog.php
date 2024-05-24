@@ -10,8 +10,24 @@ class TimeLog extends Model
 {
     use HasFactory, FormatsDuration;
 
-    protected $fillable = ['user_id', 'start_time', 'end_time'];
+    protected $fillable = [
+        'user_id',
+        'login_time',
+        'logout_time',
+        'talk_type',
+        'talk_time',
+        'order_type',
+        'date',
+        'made_percentage',
+        'country',
+        'payment_method',
+        'start_time',
+        'end_time',
+    ];
+
     protected $casts = [
+        'login_time' => 'datetime',
+        'logout_time' => 'datetime',
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
