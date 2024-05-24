@@ -12,20 +12,14 @@
     </div>
     @endunless
 
-    @if (Auth::user()->isAdmin())
     <div class="text-center mb-8">
+        @if (Auth::user()->isAdmin())
         <h2 class="text-3xl font-semibold text-gray-700">Time Logs</h2>
-    </div>
-
-    @else
-    <div class="text-center mb-8">
+        @else
         <h2 class="text-3xl font-semibold text-gray-700">Your Time Logs</h2>
-    </div>
-
-    <div class="text-center mt-8">
         <p class="text-xl text-gray-700">Total Tracked Time: <span class="font-bold">{{ Auth::user()->total_tracked_time }}</span></p>
+        @endif
     </div>
-    @endif
 
     <div class="flex justify-center mb-6">
         <a href="{{ route('employees.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
@@ -39,7 +33,7 @@
                 <tr>
                     <th class="py-3 px-5 border-b text-center">Login Time</th>
                     <th class="py-3 px-5 border-b text-center">Talk Time</th>
-                    <th class="py-3 px-5 border-b text-center">Data</th>
+                    <th class="py-3 px-5 border-b text-center">Date</th>
                     <th class="py-3 px-5 border-b text-center">% Made</th>
                     <th class="py-3 px-5 border-b text-center">Start Time</th>
                     <th class="py-3 px-5 border-b text-center">End Time</th>
