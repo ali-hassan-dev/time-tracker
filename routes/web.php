@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TimeLogController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/timelogs/start', [TimeLogController::class, 'start'])->name('timelogs.start');
     Route::post('/timelogs/{id}/stop', [TimeLogController::class, 'stop'])->name('timelogs.stop');
 });
+
+Route::get('/employees', [EmployeeController::class, 'index'])->middleware('auth')->name('employees.index');
 
 require __DIR__ . '/auth.php';
