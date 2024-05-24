@@ -37,4 +37,11 @@ class AdminTimeLogController extends Controller
 
         return redirect()->route('admin.users.time-logs.index', ['user' => $user->id])->with('success', 'Time log updated successfully.');
     }
+
+    public function destroy(User $user, TimeLog $timeLog)
+    {
+        $timeLog->delete();
+
+        return redirect()->back()->with('success', 'Time log deleted successfully.');
+    }
 }

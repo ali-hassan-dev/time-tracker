@@ -27,6 +27,7 @@ Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::get('/admin/users/{user}/time-logs', [AdminTimeLogController::class, 'index'])->name('admin.users.time-logs.index');
     Route::get('/admin/users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->name('admin.users.time-logs.edit');
     Route::put('/admin/users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->name('admin.users.time-logs.update');
+    Route::delete('/admin/users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'destroy'])->name('admin.users.time-logs.destroy');
 });
 
 require __DIR__ . '/auth.php';

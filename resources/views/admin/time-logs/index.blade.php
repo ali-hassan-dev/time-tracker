@@ -25,17 +25,22 @@
             <tbody>
                 @foreach($timeLogs as $timeLog)
                 <tr class="hover:bg-gray-50">
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->login_time ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_type ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_time ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->order_type ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->country ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->date ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->made_percentage ?? "-" }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->payment_method ?? "-" }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->login_time ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_type ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_time ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->order_type ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->country ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->date ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->made_percentage ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->payment_method ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">
                         <a href="{{ route('admin.users.time-logs.edit', ['user' => $user->id, 'timeLog' => $timeLog->id]) }}" class="text-blue-500 hover:underline">Edit</a>
+                        <form action="{{ route('admin.users.time-logs.destroy', ['user' => $user->id, 'timeLog' => $timeLog->id]) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:underline ml-2">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
