@@ -28,17 +28,41 @@
     </div>
 
     <div class="mb-8">
-        <form action="{{ route('timelogs.index') }}" method="GET" class="flex justify-center space-x-4">
-            <div>
+        <form action="{{ route('timelogs.index') }}" method="GET" class="flex flex-wrap justify-center space-x-4 space-y-4 md:space-y-0">
+            <div class="w-full md:w-auto">
                 <label for="date_from" class="block text-gray-700 text-sm font-bold mb-2">From:</label>
                 <input type="date" name="date_from" id="date_from" value="{{ request('date_from') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <div>
+            <div class="w-full md:w-auto">
                 <label for="date_to" class="block text-gray-700 text-sm font-bold mb-2">To:</label>
                 <input type="date" name="date_to" id="date_to" value="{{ request('date_to') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <div class="flex items-end">
-                <button type="submit" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filter</button>
+            <div class="w-full md:w-auto">
+                <label for="talk_type" class="block text-gray-700 text-sm font-bold mb-2">Talk Type:</label>
+                <select name="talk_type" id="talk_type" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">All</option>
+                    <option value="Chat"{{ request('talk_type') == 'Chat' ? ' selected' : '' }}>Chat</option>
+                    <option value="Talk"{{ request('talk_type') == 'Talk' ? ' selected' : '' }}>Talk</option>
+                </select>
+            </div>
+            <div class="w-full md:w-auto">
+                <label for="client" class="block text-gray-700 text-sm font-bold mb-2">Client:</label>
+                <input type="text" name="client" id="client" value="{{ request('client') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Client name" />
+            </div>
+            <div class="w-full md:w-auto">
+                <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
+                <input type="text" name="country" id="country" value="{{ request('country') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Country" />
+            </div>
+            <div class="w-full md:w-auto">
+                <label for="payment_method" class="block text-gray-700 text-sm font-bold mb-2">Payment Method:</label>
+                <select name="payment_method" id="payment_method" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="">All</option>
+                    <option value="Phone"{{ request('payment_method') == 'Phone' ? ' selected' : '' }}>Phone</option>
+                    <option value="Crypto"{{ request('payment_method') == 'Crypto' ? ' selected' : '' }}>Crypto</option>
+                </select>
+            </div>
+            <div class="w-full md:w-auto flex items-end">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filter</button>
             </div>
         </form>
     </div>
