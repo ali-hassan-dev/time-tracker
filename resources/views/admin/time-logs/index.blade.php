@@ -15,10 +15,10 @@
                     <th class="py-3 px-4 border-b text-center">Logout Time</th>
                     <th class="py-3 px-4 border-b text-center">Talk Type</th>
                     <th class="py-3 px-4 border-b text-center">Talk Time</th>
-                    <th class="py-3 px-4 border-b text-center">Order Type</th>
+                    <th class="py-3 px-4 border-b text-center">Client</th>
                     <th class="py-3 px-4 border-b text-center">Country</th>
                     <th class="py-3 px-4 border-b text-center">Date</th>
-                    <th class="py-3 px-4 border-b text-center">% Made</th>
+                    <th class="py-3 px-4 border-b text-center">Payout</th>
                     <th class="py-3 px-4 border-b text-center">Payment Method</th>
                     <th class="py-3 px-4 border-b text-center">Actions</th>
                 </tr>
@@ -30,7 +30,7 @@
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->login_time ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_type ?? '-' }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_time ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_time ? $timeLog->talk_time . ' minutes' : '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->order_type ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->country ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->date ?? '-' }}</td>
