@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,7 @@ class UserController extends Controller
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
         $user->password = Hash::make($validatedData['password']);
-        $user->role = $validatedData['role'];
+        $user->role = Role::from($validatedData['role']);
         $user->save();
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully');
@@ -58,7 +59,7 @@ class UserController extends Controller
         $user->name = $validatedData['name'];
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
-        $user->role = $validatedData['role'];
+        $user->role = Role::from($validatedData['role']);
 
         if ($request->filled('password')) {
             $user->password = Hash::make($validatedData['password']);
