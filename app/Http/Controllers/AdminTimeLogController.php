@@ -24,13 +24,13 @@ class AdminTimeLogController extends Controller
         $validatedData = $request->validate([
             'login_time' => 'nullable|date',
             'logout_time' => 'nullable|date',
-            'talk_type' => 'nullable|string|max:255',
-            'talk_time' => 'nullable|date_format:H:i',
-            'order_type' => 'nullable|string|max:255',
+            'talk_type' => 'nullable|in:Chat,Talk',
+            'talk_time' => 'nullable|integer',
+            'client' => 'nullable|string|max:255',
             'date' => 'nullable|date',
-            'made_percentage' => 'nullable|numeric',
+            'payout' => 'nullable|numeric',
             'country' => 'nullable|string|max:255',
-            'payment_method' => 'nullable|string|max:255',
+            'payment_method' => 'nullable|in:Phone,Crypto',
         ]);
 
         $timeLog->update($validatedData);

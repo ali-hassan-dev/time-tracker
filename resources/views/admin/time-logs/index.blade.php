@@ -31,10 +31,10 @@
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_type ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->talk_time ? $timeLog->talk_time . ' minutes' : '-' }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->order_type ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->client ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->country ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->date ?? '-' }}</td>
-                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->made_percentage ?? '-' }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $timeLog->payout ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $timeLog->payment_method ?? '-' }}</td>
                     <td class="py-3 px-4 border-b text-center">
                         <a href="{{ route('admin.users.time-logs.edit', ['user' => $user->id, 'timeLog' => $timeLog->id]) }}" class="text-blue-500 hover:underline">Edit</a>

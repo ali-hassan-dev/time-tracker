@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->renameColumn('order_type', 'client');
             $table->unsignedInteger('talk_time')->nullable()->change();
             $table->renameColumn('made_percentage', 'payout');
-            $table->enum('payment_method', ['Phone Pay', 'Crypto'])->nullable()->change();
+            $table->enum('payment_method', ['Phone', 'Crypto'])->nullable()->change();
         });
     }
 
