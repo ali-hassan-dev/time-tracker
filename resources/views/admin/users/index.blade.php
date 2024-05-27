@@ -16,7 +16,9 @@
                 <tr>
                     <th class="py-3 px-4 border-b text-center">#</th>
                     <th class="py-3 px-4 border-b text-center">Name</th>
+                    <th class="py-3 px-4 border-b text-center">Username</th>
                     <th class="py-3 px-4 border-b text-center">Email</th>
+                    <th class="py-3 px-4 border-b text-center">Role</th>
                     <th class="py-3 px-4 border-b text-center">Actions</th>
                 </tr>
             </thead>
@@ -25,7 +27,9 @@
                 <tr class="hover:bg-gray-50">
                     <td class="py-3 px-4 border-b text-center">{{ $key + 1 }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $user->name }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ $user->username }}</td>
                     <td class="py-3 px-4 border-b text-center">{{ $user->email }}</td>
+                    <td class="py-3 px-4 border-b text-center">{{ ucfirst($user->role->value) }}</td>
                     <td class="py-3 px-4 border-b text-center">
                         <a href="{{ route('admin.users.edit', $user->id) }}" class="text-blue-500 hover:underline">Edit</a>
                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
