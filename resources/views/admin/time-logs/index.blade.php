@@ -6,6 +6,12 @@
             <h1 class="text-4xl font-bold text-gray-800">Time Logs for {{ $user->name }}</h1>
         </div>
 
+        @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-300 shadow-lg rounded-lg">
                 <thead class="bg-gray-200">
