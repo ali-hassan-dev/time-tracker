@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminTimeLogController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TimeLogController;
 use App\Http\Controllers\UserController;
@@ -21,7 +22,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
 });
 
-
 Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -34,6 +34,8 @@ Route::middleware(['auth', 'can:access-admin'])->group(function () {
     Route::get('/admin/users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->name('admin.users.time-logs.edit');
     Route::put('/admin/users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->name('admin.users.time-logs.update');
     Route::delete('/admin/users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'destroy'])->name('admin.users.time-logs.destroy');
+
+    Route::resource('countries', CountryController::class);
 });
 
 require __DIR__ . '/auth.php';
