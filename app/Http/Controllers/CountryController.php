@@ -31,11 +31,11 @@ class CountryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:countries,name',
-            'code' => 'required|unique:countries,code',
+            'code' => 'required|unique:countries,code|size:3',
         ]);
 
         Country::create($request->all());
-        return redirect()->route('countries.index')->with('success', 'Country created successfully.');
+        return redirect()->route('admin.countries.index')->with('success', 'Country created successfully.');
     }
 
     /**
@@ -53,11 +53,11 @@ class CountryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:countries,name,' . $country->id,
-            'code' => 'required|unique:countries,code,' . $country->id,
+            'code' => 'required|unique:countries,code,' . $country->id . '|size:3',
         ]);
 
         $country->update($request->all());
-        return redirect()->route('countries.index')->with('success', 'Country updated successfully.');
+        return redirect()->route('admin.countries.index')->with('success', 'Country updated successfully.');
     }
 
     /**
@@ -66,6 +66,6 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
-        return redirect()->route('countries.index')->with('success', 'Country deleted successfully.');
+        return redirect()->route('admin.countries.index')->with('success', 'Country deleted successfully.');
     }
 }

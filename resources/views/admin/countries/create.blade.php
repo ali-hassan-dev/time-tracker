@@ -6,7 +6,7 @@
             <h1 class="text-4xl font-bold text-gray-800">Add Country</h1>
         </div>
 
-        <form action="{{ route('countries.store') }}" method="POST" class="max-w-lg mx-auto">
+        <form action="{{ route('admin.countries.store') }}" method="POST" class="max-w-lg mx-auto">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Country Name:</label>
@@ -19,7 +19,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="code" class="block text-gray-700 text-sm font-bold mb-2">Country Code:</label>
+                <label for="code" class="block text-gray-700 text-sm font-bold mb-2">Country Code (3
+                    characters):</label>
                 <input type="text" name="code" id="code"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     value="{{ old('code') }}">

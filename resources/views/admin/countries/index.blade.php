@@ -6,9 +6,17 @@
             <h1 class="text-4xl font-bold text-gray-800">Manage Countries</h1>
         </div>
 
+        @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="mb-4 text-right">
-            <a href="{{ route('countries.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Country</a>
+            <a href="{{ route('admin.countries.create') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add Country
+            </a>
         </div>
 
         <div class="overflow-x-auto">
@@ -28,9 +36,10 @@
                             <td class="py-3 px-5 border-b text-center">{{ $country->name }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $country->code }}</td>
                             <td class="py-3 px-5 border-b text-center">
-                                <a href="{{ route('countries.edit', $country->id) }}"
+                                <a href="{{ route('admin.countries.edit', $country->id) }}"
                                     class="text-blue-500 hover:underline">Edit</a>
-                                <form action="{{ route('countries.destroy', $country->id) }}" method="POST" class="inline">
+                                <form action="{{ route('admin.countries.destroy', $country->id) }}" method="POST"
+                                    class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:underline ml-2">Delete</button>
