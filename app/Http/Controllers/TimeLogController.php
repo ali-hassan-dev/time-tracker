@@ -38,7 +38,7 @@ class TimeLogController extends Controller
 
         $timeLogs = $query->orderBy('start_time', 'desc')->get();
 
-        $countries = TimeLog::select('country')->distinct()->pluck('country');
+        $countries = TimeLog::select('country')->whereNotNull('country')->distinct()->pluck('country');
 
         return view('timelogs.index', compact('timeLogs', 'countries'));
     }
