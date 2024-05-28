@@ -12,7 +12,7 @@ class AdminTimeLogController extends Controller
 {
     public function index(User $user)
     {
-        $timeLogs = $user->timeLogs()->latest()->paginate(10);
+        $timeLogs = $user->timeLogs()->latest()->get();
         return view('admin.time-logs.index', compact('user', 'timeLogs'));
     }
 

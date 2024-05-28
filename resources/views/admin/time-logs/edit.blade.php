@@ -105,7 +105,7 @@
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="Phone"
                             {{ old('payment_method', $timeLog->payment_method) == 'Phone' ? 'selected' : '' }}>Phone
-                            Pay</option>
+                        </option>
                         <option value="Crypto"
                             {{ old('payment_method', $timeLog->payment_method) == 'Crypto' ? 'selected' : '' }}>Crypto
                         </option>
