@@ -7,7 +7,8 @@
         </div>
 
         <div class="max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <form action="{{ route('admin.users.time-logs.update', ['user' => $user->id, 'timeLog' => $timeLog->id]) }}" method="POST">
+            <form action="{{ route('admin.users.time-logs.update', ['user' => $user->id, 'timeLog' => $timeLog->id]) }}"
+                method="POST">
                 @csrf
                 @method('PUT')
 
@@ -85,9 +86,14 @@
 
                 <div class="mb-4">
                     <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
-                    <input type="text" name="country" id="country"
-                        value="{{ old('country', $timeLog->country) ?? '' }}"
+                    <select name="country" id="country"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        @foreach ($countries as $country)
+                            <option value="{{ $country->name }}"
+                                {{ old('country', $timeLog->country) == $country->name ? 'selected' : '' }}>
+                                {{ $country->name }}</option>
+                        @endforeach
+                    </select>
                     @error('country')
                         <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror

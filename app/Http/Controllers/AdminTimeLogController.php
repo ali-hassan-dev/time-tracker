@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\TimeLog;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class AdminTimeLogController extends Controller
@@ -16,7 +18,8 @@ class AdminTimeLogController extends Controller
 
     public function edit(User $user, TimeLog $timeLog)
     {
-        return view('admin.time-logs.edit', compact('user', 'timeLog'));
+        $countries = Country::orderBy('name')->get();
+        return view('admin.time-logs.edit', compact('user', 'timeLog', 'countries'));
     }
 
     public function update(Request $request, User $user, TimeLog $timeLog)
@@ -29,7 +32,14 @@ class AdminTimeLogController extends Controller
             'client' => 'nullable|string|max:255',
             'date' => 'nullable|date',
             'payout' => 'nullable|numeric',
-            'country' => 'nullable|string|max:255',
+            'country' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::exists('countries', 'name')->where(function ($query) use ($request) {
+                    $query->where('name', $request->input('country'));
+                }),
+            ],
             'payment_method' => 'nullable|in:Phone,Crypto',
         ]);
 
