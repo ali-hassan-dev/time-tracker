@@ -11,6 +11,7 @@ class TimeLogController extends Controller
     public function index(Request $request)
     {
         $query = Auth::user()->isAdmin() ? TimeLog::with('user') : Auth::user()->timeLogs();
+
         if ($request->has('date_from') && !empty($request->date_from)) {
             $query->where('start_time', '>=', $request->date_from);
         }
@@ -37,6 +38,8 @@ class TimeLogController extends Controller
 
         $timeLogs = $query->orderBy('start_time', 'desc')->get();
 
-        return view('timelogs.index', compact('timeLogs'));
+        $countries = TimeLog::select('country')->distinct()->pluck('country');
+
+        return view('timelogs.index', compact('timeLogs', 'countries'));
     }
 }

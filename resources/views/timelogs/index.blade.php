@@ -59,9 +59,14 @@
                 </div>
                 <div class="w-full md:w-auto">
                     <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
-                    <input type="text" name="country" id="country" value="{{ request('country') }}"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="Country" />
+                    <select name="country" id="country"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">All</option>
+                        @foreach ($countries as $country)
+                            <option value="{{ $country }}"{{ request('country') == $country ? ' selected' : '' }}>
+                                {{ $country }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="w-full md:w-auto">
                     <label for="payment_method" class="block text-gray-700 text-sm font-bold mb-2">Payment Method:</label>
@@ -106,11 +111,9 @@
                             <td class="py-3 px-5 border-b text-center">{{ $timeLog->date ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $timeLog->payout ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
-                                {{ $timeLog->start_time->format('Y-m-d H:i:s') ?? '-' }}
-                            </td>
+                                {{ $timeLog->start_time->format('Y-m-d H:i:s') ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
-                                {{ $timeLog->end_time ? $timeLog->end_time->format('Y-m-d H:i:s') : 'In Progress' }}
-                            </td>
+                                {{ $timeLog->end_time ? $timeLog->end_time->format('Y-m-d H:i:s') : 'In Progress' }}</td>
                             @if (Auth::user()->isAdmin())
                                 <td class="py-3 px-5 border-b text-center">{{ $timeLog->user->name }}</td>
                             @endif
