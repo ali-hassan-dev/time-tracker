@@ -29,6 +29,7 @@
                         <th class="py-3 px-5 border-b text-center">Total Logged Time</th>
                         @if (Auth::user()->isAdmin())
                             <th class="py-3 px-5 border-b text-center">View Logs</th>
+                            <th class="py-3 px-5 border-b text-center">Actions</th>
                         @endif
                     </tr>
                 </thead>
@@ -44,6 +45,9 @@
                                 <td class="py-3 px-5 border-b text-center">
                                     <a href="{{ route('admin.users.time-logs.index', ['user' => $employee->id]) }}"
                                         class="text-blue-500 hover:underline">View Logs</a>
+                                </td>
+                                <td class="py-3 px-5 border-b text-center">
+                                    <livewire:employee-timer :employee-id="$employee->id" />
                                 </td>
                             @endif
                         </tr>
