@@ -1,5 +1,5 @@
 <div>
-    <button wire:click="toggleTimer" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out flex items-center">
+    <button wire:click="toggleTimer" class="{{ $isRunning ? 'bg-red-600 hover:bg-red-800' : 'bg-green-600 hover:bg-green-800' }} text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out flex items-center">
         @if ($isRunning)
             <span>Stop Timer</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
