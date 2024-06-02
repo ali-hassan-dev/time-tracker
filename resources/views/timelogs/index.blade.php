@@ -16,7 +16,6 @@
             @if (Auth::user()->isAdmin())
                 <h2 class="text-3xl font-semibold text-gray-700">Time Logs</h2>
             @else
-                <h2 class="text-3xl font-semibold text-gray-700">Your Time Logs</h2>
                 <p class="text-xl text-gray-700">Total Tracked Time: <span
                         class="font-bold">{{ Auth::user()->total_tracked_time }}</span></p>
             @endif
@@ -96,9 +95,7 @@
                         <th class="py-3 px-5 border-b text-center">Payout</th>
                         <th class="py-3 px-5 border-b text-center">Start Time</th>
                         <th class="py-3 px-5 border-b text-center">End Time</th>
-                        @if (Auth::user()->isAdmin())
-                            <th class="py-3 px-5 border-b text-center">User</th>
-                        @endif
+                        <th class="py-3 px-5 border-b text-center">User</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,9 +111,7 @@
                                 {{ $timeLog->start_time->format('Y-m-d H:i:s') ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
                                 {{ $timeLog->end_time ? $timeLog->end_time->format('Y-m-d H:i:s') : 'In Progress' }}</td>
-                            @if (Auth::user()->isAdmin())
-                                <td class="py-3 px-5 border-b text-center">{{ $timeLog->user->name }}</td>
-                            @endif
+                            <td class="py-3 px-5 border-b text-center">{{ $timeLog->user->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>
