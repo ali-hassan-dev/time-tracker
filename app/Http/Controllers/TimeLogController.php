@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\TimeLog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TimeLogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Auth::user()->isAdmin() ? TimeLog::with('user') : Auth::user()->timeLogs();
+        $query = TimeLog::with('user');
 
         if ($request->has('date_from') && !empty($request->date_from)) {
             $query->where('start_time', '>=', $request->date_from);
