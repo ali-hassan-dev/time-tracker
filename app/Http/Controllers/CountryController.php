@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CountryRequest;
 use App\Models\Country;
-use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
@@ -27,14 +27,9 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CountryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:countries,name',
-            'code' => 'required|unique:countries,code|size:3',
-        ]);
-
-        Country::create($request->all());
+        Country::create($request->validated());
         return redirect()->route('admin.countries.index')->with('success', 'Country created successfully.');
     }
 
@@ -49,14 +44,9 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Country $country)
+    public function update(CountryRequest $request, Country $country)
     {
-        $request->validate([
-            'name' => 'required|unique:countries,name,' . $country->id,
-            'code' => 'required|unique:countries,code,' . $country->id . '|size:3',
-        ]);
-
-        $country->update($request->all());
+        $country->update($request->validated());
         return redirect()->route('admin.countries.index')->with('success', 'Country updated successfully.');
     }
 
