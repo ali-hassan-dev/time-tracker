@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -56,10 +57,17 @@ class UserController extends Controller
             'role' => 'required|in:admin,employee',
         ]);
 
+        $role = Role::from($validatedData['role']);
+
+        $response = Gate::inspect('changeRole', [$user, $role]);
+        if ($response->denied()) {
+            return back()->withErrors(['role' => $response->message()])->withInput();
+        }
+
         $user->name = $validatedData['name'];
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
-        $user->role = Role::from($validatedData['role']);
+        $user->role = $role;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($validatedData['password']);
@@ -72,6 +80,11 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $response = Gate::inspect('delete', $user);
+        if ($response->denied()) {
+            return redirect()->route('admin.users.index')->with('error', $response->message());
+        }
+
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
     }
