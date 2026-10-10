@@ -13,12 +13,16 @@ class EmployeeTimer extends Component
 
     public function mount($employeeId)
     {
+        $this->authorize('access-admin');
+
         $this->employee = User::findOrFail($employeeId);
         $this->isRunning = $this->employee->hasActiveTimeLog();
     }
 
     public function toggleTimer()
     {
+        $this->authorize('access-admin');
+
         if ($this->isRunning) {
             $activeLog = $this->employee->timeLogs()->whereNull('end_time')->first();
             if ($activeLog) {
