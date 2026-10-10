@@ -17,25 +17,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/employees', [EmployeeController::class, 'index'])->middleware('can:access-admin')->name('employees.index');
 });
 
-Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->group(function () {
-    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
-    Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
-    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-    Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
-    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', UserController::class)->except('show');
 
-    Route::get('users/{user}/time-logs', [AdminTimeLogController::class, 'index'])->name('admin.users.time-logs.index');
-    Route::get('users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->scopeBindings()->name('admin.users.time-logs.edit');
-    Route::put('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->scopeBindings()->name('admin.users.time-logs.update');
-    Route::delete('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'destroy'])->scopeBindings()->name('admin.users.time-logs.destroy');
+    Route::resource('users.time-logs', AdminTimeLogController::class)
+        ->only(['index', 'edit', 'update', 'destroy'])
+        ->parameters(['time-logs' => 'timeLog'])
+        ->scoped();
 
-    Route::get('countries', [CountryController::class, 'index'])->name('admin.countries.index');
-    Route::get('countries/create', [CountryController::class, 'create'])->name('admin.countries.create');
-    Route::post('countries', [CountryController::class, 'store'])->name('admin.countries.store');
-    Route::get('countries/{country}/edit', [CountryController::class, 'edit'])->name('admin.countries.edit');
-    Route::put('countries/{country}', [CountryController::class, 'update'])->name('admin.countries.update');
-    Route::delete('countries/{country}', [CountryController::class, 'destroy'])->name('admin.countries.destroy');
+    Route::resource('countries', CountryController::class)->except('show');
 });
 
 require __DIR__ . '/auth.php';
