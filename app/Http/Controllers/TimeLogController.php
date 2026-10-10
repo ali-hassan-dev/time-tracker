@@ -9,7 +9,9 @@ class TimeLogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = TimeLog::with('user');
+        $user = $request->user();
+
+        $query = TimeLog::with('user')->visibleTo($user);
 
         if ($request->has('date_from') && !empty($request->date_from)) {
             $query->where('start_time', '>=', $request->date_from);
@@ -37,7 +39,7 @@ class TimeLogController extends Controller
 
         $timeLogs = $query->orderBy('start_time', 'desc')->get();
 
-        $countries = TimeLog::select('country')->whereNotNull('country')->distinct()->pluck('country');
+        $countries = TimeLog::visibleTo($user)->select('country')->whereNotNull('country')->distinct()->pluck('country');
 
         return view('timelogs.index', compact('timeLogs', 'countries'));
     }

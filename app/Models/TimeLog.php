@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\FormatsDuration;
@@ -35,6 +36,14 @@ class TimeLog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Limit the query to the logs the given user may see.
+     */
+    public function scopeVisibleTo(Builder $query, User $user): void
+    {
+        $query->when($user->cannot('viewAll', self::class), fn ($q) => $q->where('user_id', $user->id));
     }
 
     public function getDurationAttribute()
