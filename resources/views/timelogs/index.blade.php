@@ -105,7 +105,7 @@
                 <tbody>
                     @foreach ($timeLogs as $key => $timeLog)
                         <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-5 border-b text-center">{{ $key + 1 }}</td>
+                            <td class="py-3 px-5 border-b text-center">{{ $timeLogs->firstItem() + $key }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $timeLog->duration ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
                                 {{ $timeLog->talk_time ? $timeLog->talk_time . ' minutes' : '-' }}</td>
@@ -122,6 +122,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <div class="mt-4">
+            {{ $timeLogs->links() }}
         </div>
     </div>
 @endsection

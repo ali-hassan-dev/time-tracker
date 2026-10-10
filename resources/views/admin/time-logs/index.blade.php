@@ -34,7 +34,7 @@
                 <tbody>
                     @foreach ($timeLogs as $key => $timeLog)
                         <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-4 border-b text-center">{{ $key + 1 }}</td>
+                            <td class="py-3 px-4 border-b text-center">{{ $timeLogs->firstItem() + $key }}</td>
                             <td class="py-3 px-4 border-b text-center">{{ $timeLog->login_time ?? '-' }}</td>
                             <td class="py-3 px-4 border-b text-center">{{ $timeLog->logout_time ?? '-' }}</td>
                             <td class="py-3 px-4 border-b text-center">{{ $timeLog->start_time ?? '-' }}</td>
@@ -62,6 +62,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <div class="mt-4">
+            {{ $timeLogs->links() }}
         </div>
     </div>
 @endsection

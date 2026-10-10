@@ -20,7 +20,8 @@ class TimeLogController extends Controller
             ->when($request->filled('country'), fn ($query) => $query->where('country', 'like', '%' . $request->country . '%'))
             ->when($request->filled('payment_method'), fn ($query) => $query->where('payment_method', $request->payment_method))
             ->orderBy('start_time', 'desc')
-            ->get();
+            ->paginate(25)
+            ->withQueryString();
 
         $countries = TimeLog::visibleTo($user)->select('country')->whereNotNull('country')->distinct()->pluck('country');
 
