@@ -26,9 +26,9 @@ Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->group(function
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
     Route::get('users/{user}/time-logs', [AdminTimeLogController::class, 'index'])->name('admin.users.time-logs.index');
-    Route::get('users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->name('admin.users.time-logs.edit');
-    Route::put('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->name('admin.users.time-logs.update');
-    Route::delete('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'destroy'])->name('admin.users.time-logs.destroy');
+    Route::get('users/{user}/time-logs/{timeLog}/edit', [AdminTimeLogController::class, 'edit'])->scopeBindings()->name('admin.users.time-logs.edit');
+    Route::put('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'update'])->scopeBindings()->name('admin.users.time-logs.update');
+    Route::delete('users/{user}/time-logs/{timeLog}', [AdminTimeLogController::class, 'destroy'])->scopeBindings()->name('admin.users.time-logs.destroy');
 
     Route::get('countries', [CountryController::class, 'index'])->name('admin.countries.index');
     Route::get('countries/create', [CountryController::class, 'create'])->name('admin.countries.create');
