@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\TimeLog;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -17,20 +16,17 @@ class StartStopTimer extends Component
 
     public function toggleTimer()
     {
+        $user = Auth::user();
+
+        // The component state can be stale (another tab, a double click), so the
+        // user model checks the database before starting or stopping.
         if ($this->isRunning) {
-            $activeLog = TimeLog::where('user_id', Auth::id())->whereNull('end_time')->first();
-            if ($activeLog) {
-                $activeLog->end_time = now();
-                $activeLog->save();
-            }
+            $user->stopTimer();
         } else {
-            TimeLog::create([
-                'user_id' => Auth::id(),
-                'start_time' => now(),
-            ]);
+            $user->startTimer();
         }
 
-        $this->isRunning = !$this->isRunning;
+        $this->isRunning = $user->hasActiveTimeLog();
     }
 
     public function render()

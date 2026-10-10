@@ -79,4 +79,22 @@ class User extends Authenticatable
     {
         return TimeLog::hasActiveTimeLog($this->id);
     }
+
+    /**
+     * Start a timer, unless one is already running (for example in another tab).
+     */
+    public function startTimer(): void
+    {
+        if (! $this->hasActiveTimeLog()) {
+            $this->timeLogs()->create(['start_time' => now()]);
+        }
+    }
+
+    /**
+     * Stop every running timer for this user.
+     */
+    public function stopTimer(): void
+    {
+        $this->timeLogs()->whereNull('end_time')->update(['end_time' => now()]);
+    }
 }
