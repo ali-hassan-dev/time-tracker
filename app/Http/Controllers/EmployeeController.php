@@ -12,7 +12,7 @@ class EmployeeController extends Controller
     {
         $employees = User::where('role', Role::Employee)
             ->with('timeLogs')
-            ->when($request->filled('username'), fn ($query) => $query->where('username', 'like', '%' . $request->username . '%'))
+            ->when($request->filled('username'), fn ($query) => $query->where('username', 'like', '%'.$request->username.'%'))
             ->get();
 
         return view('employees.index', compact('employees'));

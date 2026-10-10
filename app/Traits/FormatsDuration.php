@@ -23,7 +23,7 @@ trait FormatsDuration
         $hours = intdiv($minutes, 60);
         $minutes = $minutes % 60;
 
-        return trim($this->pluralizeUnit($hours, 'hour') . ' ' . ($minutes > 0 ? $this->pluralizeUnit($minutes, 'minute') : ''));
+        return trim($this->pluralizeUnit($hours, 'hour').' '.($minutes > 0 ? $this->pluralizeUnit($minutes, 'minute') : ''));
     }
 
     public function calculateDuration($start_time, $end_time)
@@ -31,11 +31,12 @@ trait FormatsDuration
         if ($start_time && $end_time) {
             return Carbon::parse($start_time)->diffInSeconds(Carbon::parse($end_time));
         }
+
         return 0;
     }
 
     protected function pluralizeUnit(int $count, string $unit): string
     {
-        return $count . ' ' . Str::plural($unit, $count);
+        return $count.' '.Str::plural($unit, $count);
     }
 }

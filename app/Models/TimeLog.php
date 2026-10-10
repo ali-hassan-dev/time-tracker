@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\FormatsDuration;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\FormatsDuration;
 
 class TimeLog extends Model
 {
-    use HasFactory, FormatsDuration;
+    use FormatsDuration, HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -50,8 +50,10 @@ class TimeLog extends Model
     {
         if ($this->start_time && $this->end_time) {
             $diffInSeconds = $this->calculateDuration($this->start_time, $this->end_time);
+
             return $this->formatDuration($diffInSeconds);
         }
+
         return 'In Progress';
     }
 

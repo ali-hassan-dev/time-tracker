@@ -12,12 +12,14 @@ class AdminTimeLogController extends Controller
     public function index(User $user)
     {
         $timeLogs = $user->timeLogs()->latest()->paginate(25);
+
         return view('admin.time-logs.index', compact('user', 'timeLogs'));
     }
 
     public function edit(User $user, TimeLog $timeLog)
     {
         $countries = Country::orderBy('name')->get();
+
         return view('admin.time-logs.edit', compact('user', 'timeLog', 'countries'));
     }
 

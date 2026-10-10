@@ -28,4 +28,4 @@ Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->name('admin.')
     Route::resource('countries', CountryController::class)->except('show');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

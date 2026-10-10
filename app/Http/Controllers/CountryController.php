@@ -13,6 +13,7 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::all();
+
         return view('admin.countries.index', compact('countries'));
     }
 
@@ -30,6 +31,7 @@ class CountryController extends Controller
     public function store(CountryRequest $request)
     {
         Country::create($request->validated());
+
         return redirect()->route('admin.countries.index')->with('success', 'Country created successfully.');
     }
 
@@ -47,6 +49,7 @@ class CountryController extends Controller
     public function update(CountryRequest $request, Country $country)
     {
         $country->update($request->validated());
+
         return redirect()->route('admin.countries.index')->with('success', 'Country updated successfully.');
     }
 
@@ -56,6 +59,7 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
+
         return redirect()->route('admin.countries.index')->with('success', 'Country deleted successfully.');
     }
 }

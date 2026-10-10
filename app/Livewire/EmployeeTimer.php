@@ -8,6 +8,7 @@ use Livewire\Component;
 class EmployeeTimer extends Component
 {
     public $employee;
+
     public $isRunning;
 
     public function mount(User $employee)

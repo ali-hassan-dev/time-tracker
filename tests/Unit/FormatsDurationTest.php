@@ -3,7 +3,8 @@
 use App\Traits\FormatsDuration;
 
 beforeEach(function () {
-    $this->formatter = new class {
+    $this->formatter = new class
+    {
         use FormatsDuration;
     };
 });
