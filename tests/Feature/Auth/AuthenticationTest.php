@@ -4,7 +4,7 @@ use App\Models\User;
 use Livewire\Volt\Volt;
 
 test('login screen can be rendered', function () {
-    $response = $this->get('/login');
+    $response = $this->get(route('login'));
 
     $response
         ->assertOk()

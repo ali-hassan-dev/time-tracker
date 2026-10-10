@@ -37,11 +37,11 @@ new class extends Component {
                         {{ __('Time Logs') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')" wire:navigate>
-                        {{ __('Employees') }}
-                    </x-nav-link>
+                    @can('access-admin')
+                        <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')" wire:navigate>
+                            {{ __('Employees') }}
+                        </x-nav-link>
 
-                    @if (auth()->user()->isAdmin())
                         <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')" wire:navigate>
                             {{ __('Users') }}
                         </x-nav-link>
@@ -49,7 +49,7 @@ new class extends Component {
                         <x-nav-link :href="route('admin.countries.index')" :active="request()->routeIs('admin.countries.index')" wire:navigate>
                             {{ __('Countries') }}
                         </x-nav-link>
-                    @endif
+                    @endcan
                 </div>
             </div>
 

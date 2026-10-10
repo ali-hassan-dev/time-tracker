@@ -10,11 +10,10 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::where('role', Role::Employee);
-        if ($request->has('username') && !empty($request->username)) {
-            $query->where('username', 'like', '%' . $request->username . '%');
-        }
-        $employees = $query->get();
+        $employees = User::where('role', Role::Employee)
+            ->with('timeLogs')
+            ->when($request->filled('username'), fn ($query) => $query->where('username', 'like', '%'.$request->username.'%'))
+            ->get();
 
         return view('employees.index', compact('employees'));
     }

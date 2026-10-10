@@ -21,12 +21,14 @@
             @endif
         </div>
 
-        <div class="flex justify-center mb-6">
-            <a href="{{ route('employees.index') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
-                View All Employees
-            </a>
-        </div>
+        @can('access-admin')
+            <div class="flex justify-center mb-6">
+                <a href="{{ route('employees.index') }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
+                    View All Employees
+                </a>
+            </div>
+        @endcan
 
         <div class="mb-8">
             <form action="{{ route('timelogs.index') }}" method="GET"
@@ -92,7 +94,9 @@
                         <th class="py-3 px-5 border-b text-center">Duration</th>
                         <th class="py-3 px-5 border-b text-center">Talk Time</th>
                         <th class="py-3 px-5 border-b text-center">Date</th>
-                        <th class="py-3 px-5 border-b text-center">Payout</th>
+                        @can('viewAll', App\Models\TimeLog::class)
+                            <th class="py-3 px-5 border-b text-center">Payout</th>
+                        @endcan
                         <th class="py-3 px-5 border-b text-center">Start Time</th>
                         <th class="py-3 px-5 border-b text-center">End Time</th>
                         <th class="py-3 px-5 border-b text-center">User</th>
@@ -101,12 +105,14 @@
                 <tbody>
                     @foreach ($timeLogs as $key => $timeLog)
                         <tr class="hover:bg-gray-50">
-                            <td class="py-3 px-5 border-b text-center">{{ $key + 1 }}</td>
+                            <td class="py-3 px-5 border-b text-center">{{ $timeLogs->firstItem() + $key }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $timeLog->duration ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
                                 {{ $timeLog->talk_time ? $timeLog->talk_time . ' minutes' : '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $timeLog->date ?? '-' }}</td>
-                            <td class="py-3 px-5 border-b text-center">{{ $timeLog->payout ?? '-' }}</td>
+                            @can('viewAll', App\Models\TimeLog::class)
+                                <td class="py-3 px-5 border-b text-center">{{ $timeLog->payout ?? '-' }}</td>
+                            @endcan
                             <td class="py-3 px-5 border-b text-center">
                                 {{ $timeLog->start_time->format('Y-m-d H:i:s') ?? '-' }}</td>
                             <td class="py-3 px-5 border-b text-center">
@@ -116,6 +122,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <div class="mt-4">
+            {{ $timeLogs->links() }}
         </div>
     </div>
 @endsection

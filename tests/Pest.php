@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 /*
@@ -45,4 +46,16 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+/**
+ * Turn on public registration for the current test. Routes are registered once
+ * at boot, so the auth routes are loaded again with the flag on.
+ */
+function enableRegistration(): void
+{
+    config(['auth.registration_enabled' => true]);
+
+    Route::middleware('web')->group(base_path('routes/auth.php'));
+    Route::getRoutes()->refreshNameLookups();
 }

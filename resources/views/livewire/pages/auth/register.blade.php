@@ -21,6 +21,8 @@ new #[Layout('layouts.guest')] class extends Component
      */
     public function register(): void
     {
+        abort_unless(config('auth.registration_enabled'), 404);
+
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'lowercase', 'max:255', 'unique:' . User::class],

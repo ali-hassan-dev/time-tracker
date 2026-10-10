@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\FormatsDuration;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\FormatsDuration;
 
 class TimeLog extends Model
 {
-    use HasFactory, FormatsDuration;
+    use FormatsDuration, HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -37,12 +38,22 @@ class TimeLog extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Limit the query to the logs the given user may see.
+     */
+    public function scopeVisibleTo(Builder $query, User $user): void
+    {
+        $query->when($user->cannot('viewAll', self::class), fn ($q) => $q->where('user_id', $user->id));
+    }
+
     public function getDurationAttribute()
     {
         if ($this->start_time && $this->end_time) {
             $diffInSeconds = $this->calculateDuration($this->start_time, $this->end_time);
+
             return $this->formatDuration($diffInSeconds);
         }
+
         return 'In Progress';
     }
 

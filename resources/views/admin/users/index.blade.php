@@ -12,6 +12,12 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div class="bg-red-500 text-white p-4 rounded mb-4 text-center">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="flex justify-end mb-4">
             <a href="{{ route('admin.users.create') }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add

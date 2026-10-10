@@ -112,4 +112,17 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Public Registration
+    |--------------------------------------------------------------------------
+    |
+    | Admins create user accounts, so the public registration page is off by
+    | default. Set REGISTRATION_ENABLED=true to let anyone sign up as an
+    | employee.
+    |
+    */
+
+    'registration_enabled' => (bool) env('REGISTRATION_ENABLED', false),
+
 ];

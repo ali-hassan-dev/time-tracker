@@ -2,37 +2,37 @@
 
 namespace App\Livewire;
 
-use App\Models\TimeLog;
 use App\Models\User;
 use Livewire\Component;
 
 class EmployeeTimer extends Component
 {
     public $employee;
+
     public $isRunning;
 
-    public function mount($employeeId)
+    public function mount(User $employee)
     {
-        $this->employee = User::findOrFail($employeeId);
-        $this->isRunning = $this->employee->hasActiveTimeLog();
+        $this->authorize('access-admin');
+
+        // Use the logs the employees page already loaded instead of querying per row.
+        $this->isRunning = $employee->timeLogs->contains(fn ($timeLog) => $timeLog->end_time === null);
+        $this->employee = $employee->withoutRelations();
     }
 
     public function toggleTimer()
     {
+        $this->authorize('access-admin');
+
+        // The component state can be stale (another tab, the employee's own timer),
+        // so the user model checks the database before starting or stopping.
         if ($this->isRunning) {
-            $activeLog = $this->employee->timeLogs()->whereNull('end_time')->first();
-            if ($activeLog) {
-                $activeLog->end_time = now();
-                $activeLog->save();
-            }
+            $this->employee->stopTimer();
         } else {
-            TimeLog::create([
-                'user_id' => $this->employee->id,
-                'start_time' => now(),
-            ]);
+            $this->employee->startTimer();
         }
 
-        $this->isRunning = !$this->isRunning;
+        $this->isRunning = $this->employee->hasActiveTimeLog();
     }
 
     public function render()

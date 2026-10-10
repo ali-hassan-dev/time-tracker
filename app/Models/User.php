@@ -5,15 +5,14 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Enums\Role;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Traits\FormatsDuration;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\FormatsDuration;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, FormatsDuration;
+    use FormatsDuration, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'username'
+        'username',
     ];
 
     /**
@@ -48,15 +47,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => Role::class,
         ];
-    }
-
-    protected function role(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => Role::from($value),
-            set: fn (Role $value) => $value->value,
-        );
     }
 
     public function isAdmin(): bool
@@ -86,5 +78,23 @@ class User extends Authenticatable
     public function hasActiveTimeLog()
     {
         return TimeLog::hasActiveTimeLog($this->id);
+    }
+
+    /**
+     * Start a timer, unless one is already running (for example in another tab).
+     */
+    public function startTimer(): void
+    {
+        if (! $this->hasActiveTimeLog()) {
+            $this->timeLogs()->create(['start_time' => now()]);
+        }
+    }
+
+    /**
+     * Stop every running timer for this user.
+     */
+    public function stopTimer(): void
+    {
+        $this->timeLogs()->whereNull('end_time')->update(['end_time' => now()]);
     }
 }

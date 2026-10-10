@@ -27,10 +27,8 @@
                         <th class="py-3 px-5 border-b text-center">Username</th>
                         <th class="py-3 px-5 border-b text-center">Email</th>
                         <th class="py-3 px-5 border-b text-center">Total Logged Time</th>
-                        @if (Auth::user()->isAdmin())
-                            <th class="py-3 px-5 border-b text-center">View Logs</th>
-                            <th class="py-3 px-5 border-b text-center">Actions</th>
-                        @endif
+                        <th class="py-3 px-5 border-b text-center">View Logs</th>
+                        <th class="py-3 px-5 border-b text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,15 +39,13 @@
                             <td class="py-3 px-5 border-b text-center">{{ $employee->username }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $employee->email }}</td>
                             <td class="py-3 px-5 border-b text-center">{{ $employee->total_tracked_time }}</td>
-                            @if (Auth::user()->isAdmin())
-                                <td class="py-3 px-5 border-b text-center">
-                                    <a href="{{ route('admin.users.time-logs.index', ['user' => $employee->id]) }}"
-                                        class="text-blue-500 hover:underline">View Logs</a>
-                                </td>
-                                <td class="py-3 px-5 border-b text-center">
-                                    <livewire:employee-timer :employee-id="$employee->id" />
-                                </td>
-                            @endif
+                            <td class="py-3 px-5 border-b text-center">
+                                <a href="{{ route('admin.users.time-logs.index', ['user' => $employee->id]) }}"
+                                    class="text-blue-500 hover:underline">View Logs</a>
+                            </td>
+                            <td class="py-3 px-5 border-b text-center">
+                                <livewire:employee-timer :employee="$employee" :key="$employee->id" />
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
