@@ -10,7 +10,7 @@ test('employees cannot load the admin timer', function () {
     $colleague = User::factory()->create();
 
     Livewire::actingAs($employee)
-        ->test(EmployeeTimer::class, ['employeeId' => $colleague->id])
+        ->test(EmployeeTimer::class, ['employee' => $colleague])
         ->assertForbidden();
 });
 
@@ -20,7 +20,7 @@ test('employees cannot toggle the admin timer', function () {
     $colleague = User::factory()->create();
 
     $component = Livewire::actingAs($admin)
-        ->test(EmployeeTimer::class, ['employeeId' => $colleague->id]);
+        ->test(EmployeeTimer::class, ['employee' => $colleague]);
 
     $this->actingAs($employee);
 
@@ -34,7 +34,7 @@ test('admins can start and stop an employee\'s timer', function () {
     $employee = User::factory()->create();
 
     $component = Livewire::actingAs($admin)
-        ->test(EmployeeTimer::class, ['employeeId' => $employee->id])
+        ->test(EmployeeTimer::class, ['employee' => $employee])
         ->call('toggleTimer')
         ->assertSet('isRunning', true);
 

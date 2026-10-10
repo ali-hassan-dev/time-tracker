@@ -11,12 +11,13 @@ class EmployeeTimer extends Component
     public $employee;
     public $isRunning;
 
-    public function mount($employeeId)
+    public function mount(User $employee)
     {
         $this->authorize('access-admin');
 
-        $this->employee = User::findOrFail($employeeId);
-        $this->isRunning = $this->employee->hasActiveTimeLog();
+        // Use the logs the employees page already loaded instead of querying per row.
+        $this->isRunning = $employee->timeLogs->contains(fn ($timeLog) => $timeLog->end_time === null);
+        $this->employee = $employee->withoutRelations();
     }
 
     public function toggleTimer()

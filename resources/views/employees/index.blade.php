@@ -44,7 +44,7 @@
                                     class="text-blue-500 hover:underline">View Logs</a>
                             </td>
                             <td class="py-3 px-5 border-b text-center">
-                                <livewire:employee-timer :employee-id="$employee->id" />
+                                <livewire:employee-timer :employee="$employee" :key="$employee->id" />
                             </td>
                         </tr>
                     @endforeach
