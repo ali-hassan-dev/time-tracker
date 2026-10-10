@@ -14,7 +14,7 @@ Route::view('profile', 'profile')
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/timelogs', [TimeLogController::class, 'index'])->name('timelogs.index');
     Route::get('/dashboard', [TimeLogController::class, 'index'])->name('dashboard');
-    Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+    Route::get('/employees', [EmployeeController::class, 'index'])->middleware('can:access-admin')->name('employees.index');
 });
 
 Route::middleware(['auth', 'can:access-admin'])->prefix('admin')->group(function () {

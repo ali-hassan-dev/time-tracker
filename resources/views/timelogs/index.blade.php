@@ -21,12 +21,14 @@
             @endif
         </div>
 
-        <div class="flex justify-center mb-6">
-            <a href="{{ route('employees.index') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
-                View All Employees
-            </a>
-        </div>
+        @can('access-admin')
+            <div class="flex justify-center mb-6">
+                <a href="{{ route('employees.index') }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
+                    View All Employees
+                </a>
+            </div>
+        @endcan
 
         <div class="mb-8">
             <form action="{{ route('timelogs.index') }}" method="GET"
