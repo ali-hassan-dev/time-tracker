@@ -65,7 +65,7 @@ test('password can be reset with valid token', function () {
         $component->call('resetPassword');
 
         $component
-            ->assertRedirect('/login')
+            ->assertRedirect(route('login', absolute: false))
             ->assertHasNoErrors();
 
         return true;
