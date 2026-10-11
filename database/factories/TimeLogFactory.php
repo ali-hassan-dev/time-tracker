@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\TimeLog;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TimeLog>
+ * @extends Factory<TimeLog>
  */
 class TimeLogFactory extends Factory
 {

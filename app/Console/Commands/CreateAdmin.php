@@ -54,7 +54,7 @@ class CreateAdmin extends Command
 
         $validated = $validator->validated();
 
-        $user = new User();
+        $user = new User;
         $user->name = $validated['name'];
         $user->username = $validated['username'];
         $user->email = $validated['email'];

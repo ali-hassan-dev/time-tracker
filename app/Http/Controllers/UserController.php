@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validated();
 
-        $user = new User();
+        $user = new User;
         $user->name = $validatedData['name'];
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
