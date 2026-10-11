@@ -35,7 +35,7 @@
                 <div class="mb-4">
                     <label for="talk_type" class="block text-gray-700 text-sm font-bold mb-2">Talk Type:</label>
                     <select name="talk_type" id="talk_type"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="Chat" {{ old('talk_type', $timeLog->talk_type) == 'Chat' ? 'selected' : '' }}>Chat
                         </option>
                         <option value="Talk" {{ old('talk_type', $timeLog->talk_type) == 'Talk' ? 'selected' : '' }}>Talk
@@ -87,7 +87,7 @@
                 <div class="mb-4">
                     <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
                     <select name="country" id="country"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         @foreach ($countries as $country)
                             <option value="{{ $country->name }}"
                                 {{ old('country', $timeLog->country) == $country->name ? 'selected' : '' }}>
@@ -102,7 +102,7 @@
                 <div class="mb-4">
                     <label for="payment_method" class="block text-gray-700 text-sm font-bold mb-2">Payment Method:</label>
                     <select name="payment_method" id="payment_method"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="Phone"
                             {{ old('payment_method', $timeLog->payment_method) == 'Phone' ? 'selected' : '' }}>Phone
                         </option>

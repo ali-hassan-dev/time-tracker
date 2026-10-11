@@ -46,7 +46,7 @@
                 <div class="w-full md:w-auto">
                     <label for="talk_type" class="block text-gray-700 text-sm font-bold mb-2">Talk Type:</label>
                     <select name="talk_type" id="talk_type"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">All</option>
                         <option value="Chat"{{ request('talk_type') == 'Chat' ? ' selected' : '' }}>Chat</option>
                         <option value="Talk"{{ request('talk_type') == 'Talk' ? ' selected' : '' }}>Talk</option>
@@ -61,7 +61,7 @@
                 <div class="w-full md:w-auto">
                     <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
                     <select name="country" id="country"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">All</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country }}"{{ request('country') == $country ? ' selected' : '' }}>
@@ -72,7 +72,7 @@
                 <div class="w-full md:w-auto">
                     <label for="payment_method" class="block text-gray-700 text-sm font-bold mb-2">Payment Method:</label>
                     <select name="payment_method" id="payment_method"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="">All</option>
                         <option value="Phone"{{ request('payment_method') == 'Phone' ? ' selected' : '' }}>Phone</option>
                         <option value="Crypto"{{ request('payment_method') == 'Crypto' ? ' selected' : '' }}>Crypto
