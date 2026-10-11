@@ -119,4 +119,4 @@ I'm Ali Hassan, a full-stack engineer working with Laravel, React, Next.js, and 
 
 ## After delivery
 
-The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, tests, CI, and demo data for this public copy. Upgraded from Laravel 11 to Laravel 13 and from Tailwind CSS 3 to 4 after delivery, with the full test suite passing at every step.
+The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, tests, CI, and demo data for this public copy. The app was then upgraded from Laravel 11 to Laravel 13 and from Tailwind CSS 3 to 4, with the full test suite passing at every step.
