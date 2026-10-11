@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/ali-hassan-dev/time-tracker/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ali-hassan-dev/time-tracker/actions/workflows/tests.yml)
 
-A Laravel 11 app where employees clock their own hours and admins review, correct, and manage everything in one place.
+A Laravel 13 app where employees clock their own hours and admins review, correct, and manage everything in one place.
 
 I built it for a client on Upwork, who rated the work five stars with the review **"Excellent Laravel Developer."** The code is public with the client's permission.
 
@@ -64,13 +64,13 @@ Employees get a 403 on the employees page, on the admin timer, and on every `/ad
 - **Validation on every write**, in Form Requests: unique usernames, emails, and country codes, allowed values for session type and payment method, and an existence check for countries.
 - **Livewire 3 components** for the employee timer and the admin's per-employee timer. Both re-check the database before starting or stopping, and the admin timer authorizes every action.
 - **Laravel Breeze (Livewire + Volt)** for login, password reset, and profile management.
-- **Pest tests** for every permission rule, the timer, the filters, and validation, run by GitHub Actions on PHP 8.2 and 8.3 along with a Laravel Pint style check and a Vite build of the front end.
+- **Pest tests** for every permission rule, the timer, the filters, and validation, run by GitHub Actions on PHP 8.3 and 8.4 along with a Laravel Pint style check and a Vite build of the front end.
 
-**Stack:** PHP 8.2 or 8.3, Laravel 11, Livewire 3, Volt, Blade, Tailwind CSS, Vite. SQLite by default; MySQL works by changing `.env`.
+**Stack:** PHP 8.3 or newer, Laravel 13, Livewire 3, Volt, Blade, Tailwind CSS 4, Vite. SQLite by default; MySQL works by changing `.env`.
 
 ## Run it locally
 
-You need PHP 8.2 or 8.3 (with the `pdo_sqlite` extension), Composer, and Node.js.
+You need PHP 8.3 or newer (with the `pdo_sqlite` extension), Composer, and Node.js 20.19+ or 22.12+.
 
 ```bash
 git clone https://github.com/ali-hassan-dev/time-tracker.git
@@ -119,4 +119,4 @@ I'm Ali Hassan, a full-stack engineer working with Laravel, React, Next.js, and 
 
 ## After delivery
 
-The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, tests, CI, and demo data for this public copy.
+The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, tests, CI, and demo data for this public copy. Upgraded from Laravel 11 to Laravel 13 and from Tailwind CSS 3 to 4 after delivery, with the full test suite passing at every step.
