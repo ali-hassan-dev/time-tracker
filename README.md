@@ -64,7 +64,7 @@ Employees get a 403 on the employees page, on the admin timer, and on every `/ad
 - **Validation on every write**, in Form Requests: unique usernames, emails, and country codes, allowed values for session type and payment method, and an existence check for countries.
 - **Livewire 3 components** for the employee timer and the admin's per-employee timer. Both re-check the database before starting or stopping, and the admin timer authorizes every action.
 - **Laravel Breeze (Livewire + Volt)** for login, password reset, and profile management.
-- **Pest tests** for every permission rule, the timer, the filters, and validation, run by GitHub Actions on PHP 8.2 and 8.3 along with a Laravel Pint style check.
+- **Pest tests** for every permission rule, the timer, the filters, and validation, run by GitHub Actions on PHP 8.2 and 8.3 along with a Laravel Pint style check and a Vite build of the front end.
 
 **Stack:** PHP 8.2 or 8.3, Laravel 11, Livewire 3, Volt, Blade, Tailwind CSS, Vite. SQLite by default; MySQL works by changing `.env`.
 
