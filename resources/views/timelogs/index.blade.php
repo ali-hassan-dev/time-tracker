@@ -32,7 +32,7 @@
 
         <div class="mb-8">
             <form action="{{ route('timelogs.index') }}" method="GET"
-                class="flex flex-wrap justify-center space-x-4 space-y-4 md:space-y-0">
+                class="flex flex-wrap justify-center gap-4">
                 <div class="w-full md:w-auto">
                     <label for="date_from" class="block text-gray-700 text-sm font-bold mb-2">From:</label>
                     <input type="date" name="date_from" id="date_from" value="{{ request('date_from') }}"
