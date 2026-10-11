@@ -109,6 +109,10 @@ Run the tests:
 php artisan test
 ```
 
+## License
+
+The client owns this code and agreed to share it for portfolio review. No open source license is granted.
+
 ## About me
 
 I'm Ali Hassan, a full-stack engineer working with Laravel, React, Next.js, and Node.js. See more of my work on my [portfolio](https://ali-hassan-dev.netlify.app/upwork), or [work with me on Upwork](https://www.upwork.com/freelancers/~0110268fa5a62812e0).
