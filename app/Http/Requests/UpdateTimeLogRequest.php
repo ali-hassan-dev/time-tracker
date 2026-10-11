@@ -30,7 +30,7 @@ class UpdateTimeLogRequest extends FormRequest
             'talk_time' => 'nullable|integer',
             'client' => 'nullable|string|max:255',
             'date' => 'nullable|date',
-            'payout' => 'nullable|numeric',
+            'payout' => 'nullable|numeric|min:0',
             'country' => ['nullable', 'string', 'max:255', Rule::exists('countries', 'name')],
             'payment_method' => 'nullable|in:Phone,Crypto',
         ];

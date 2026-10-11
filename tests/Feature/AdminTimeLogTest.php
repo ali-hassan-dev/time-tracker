@@ -38,6 +38,33 @@ test('admins can edit a log through its owner\'s URL', function () {
     expect($this->timeLog->fresh()->client)->toBe('Updated Client');
 });
 
+test('the payout input accepts cents', function () {
+    $response = $this->actingAs($this->admin)
+        ->get(route('admin.users.time-logs.edit', [$this->owner, $this->timeLog]))
+        ->assertOk();
+
+    expect($response->getContent())->toMatch('/<input[^>]*name="payout"[^>]*step="0\.01"/');
+});
+
+test('admins can save a log with a decimal payout', function () {
+    $this->actingAs($this->admin)
+        ->put(route('admin.users.time-logs.update', [$this->owner, $this->timeLog]), timeLogUpdatePayload(['payout' => '89.6']))
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('admin.users.time-logs.index', $this->owner));
+
+    expect($this->timeLog->fresh()->payout)->toEqual(89.6);
+});
+
+test('a negative payout is rejected', function () {
+    $payout = $this->timeLog->payout;
+
+    $this->actingAs($this->admin)
+        ->put(route('admin.users.time-logs.update', [$this->owner, $this->timeLog]), timeLogUpdatePayload(['payout' => '-5']))
+        ->assertSessionHasErrors(['payout']);
+
+    expect($this->timeLog->fresh()->payout)->toEqual($payout);
+});
+
 test('admins can delete a log through its owner\'s URL', function () {
     $this->actingAs($this->admin)
         ->delete(route('admin.users.time-logs.destroy', [$this->owner, $this->timeLog]))
