@@ -9,10 +9,10 @@
         <div class="mb-4">
             <form action="{{ route('employees.index') }}" method="GET" class="flex items-center justify-center">
                 <input type="text" name="username" placeholder="Filter by username"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                     value="{{ request('username') }}" />
                 <button type="submit"
-                    class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">
                     Filter
                 </button>
             </form>
