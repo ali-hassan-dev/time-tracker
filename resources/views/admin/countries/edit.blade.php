@@ -12,7 +12,7 @@
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Country Name:</label>
                 <input type="text" name="name" id="name"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                     value="{{ $country->name }}">
                 @error('name')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -23,7 +23,7 @@
                 <label for="code" class="block text-gray-700 text-sm font-bold mb-2">Country Code (3
                     characters):</label>
                 <input type="text" name="code" id="code"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                     value="{{ $country->code }}">
                 @error('code')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm">Update
                     Country</button>
             </div>
         </form>

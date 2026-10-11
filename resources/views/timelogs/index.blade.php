@@ -36,17 +36,17 @@
                 <div class="w-full md:w-auto">
                     <label for="date_from" class="block text-gray-700 text-sm font-bold mb-2">From:</label>
                     <input type="date" name="date_from" id="date_from" value="{{ request('date_from') }}"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                        class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline" />
                 </div>
                 <div class="w-full md:w-auto">
                     <label for="date_to" class="block text-gray-700 text-sm font-bold mb-2">To:</label>
                     <input type="date" name="date_to" id="date_to" value="{{ request('date_to') }}"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                        class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline" />
                 </div>
                 <div class="w-full md:w-auto">
                     <label for="talk_type" class="block text-gray-700 text-sm font-bold mb-2">Talk Type:</label>
                     <select name="talk_type" id="talk_type"
-                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow-sm appearance-none border rounded-sm w-full md:min-w-36 py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline">
                         <option value="">All</option>
                         <option value="Chat"{{ request('talk_type') == 'Chat' ? ' selected' : '' }}>Chat</option>
                         <option value="Talk"{{ request('talk_type') == 'Talk' ? ' selected' : '' }}>Talk</option>
@@ -55,13 +55,13 @@
                 <div class="w-full md:w-auto">
                     <label for="client" class="block text-gray-700 text-sm font-bold mb-2">Client:</label>
                     <input type="text" name="client" id="client" value="{{ request('client') }}"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline"
                         placeholder="Client name" />
                 </div>
                 <div class="w-full md:w-auto">
                     <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
                     <select name="country" id="country"
-                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow-sm appearance-none border rounded-sm w-full md:min-w-36 py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline">
                         <option value="">All</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country }}"{{ request('country') == $country ? ' selected' : '' }}>
@@ -72,7 +72,7 @@
                 <div class="w-full md:w-auto">
                     <label for="payment_method" class="block text-gray-700 text-sm font-bold mb-2">Payment Method:</label>
                     <select name="payment_method" id="payment_method"
-                        class="shadow appearance-none border rounded w-full md:min-w-[9rem] py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow-sm appearance-none border rounded-sm w-full md:min-w-36 py-2 pl-3 pr-10 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline">
                         <option value="">All</option>
                         <option value="Phone"{{ request('payment_method') == 'Phone' ? ' selected' : '' }}>Phone</option>
                         <option value="Crypto"{{ request('payment_method') == 'Crypto' ? ' selected' : '' }}>Crypto
@@ -81,7 +81,7 @@
                 </div>
                 <div class="w-full md:w-auto flex items-end">
                     <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Filter</button>
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Filter</button>
                 </div>
             </form>
         </div>
