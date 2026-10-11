@@ -21,6 +21,15 @@ test('starting the timer creates an open log and stopping closes it', function (
         ->and($user->timeLogs()->whereNull('end_time')->count())->toBe(0);
 });
 
+test('starting the timer creates a log dated today', function () {
+    $this->freezeTime();
+    $user = User::factory()->create();
+
+    Livewire::actingAs($user)->test(StartStopTimer::class)->call('toggleTimer');
+
+    expect($user->timeLogs()->sole()->date)->toBe(now()->toDateString());
+});
+
 test('starting the timer from two tabs creates only one open log', function () {
     $user = User::factory()->create();
 

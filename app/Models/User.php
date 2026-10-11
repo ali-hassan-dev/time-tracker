@@ -86,7 +86,10 @@ class User extends Authenticatable
     public function startTimer(): void
     {
         if (! $this->hasActiveTimeLog()) {
-            $this->timeLogs()->create(['start_time' => now()]);
+            $this->timeLogs()->create([
+                'start_time' => now(),
+                'date' => now()->toDateString(),
+            ]);
         }
     }
 
