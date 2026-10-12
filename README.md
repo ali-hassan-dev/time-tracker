@@ -70,7 +70,7 @@ Employees get a 403 on the employees page, on the admin timer, and on every `/ad
 
 ## Run it locally
 
-You need PHP 8.3 or newer (with the `pdo_sqlite` extension), Composer, and Node.js 20.19+ or 22.12+.
+You need PHP 8.3 or newer (with the `pdo_sqlite` extension), Composer, and Node.js 22.12 or newer.
 
 ```bash
 git clone https://github.com/ali-hassan-dev/time-tracker.git
