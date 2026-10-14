@@ -109,6 +109,10 @@ Run the tests:
 php artisan test
 ```
 
+## After delivery
+
+The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, 100+ automated tests, CI, and demo data for this public copy. The app was then upgraded from Laravel 11 to Laravel 13 and from Tailwind CSS 3 to 4, with the full test suite passing at every step.
+
 ## License
 
 The client owns this code and agreed to share it for portfolio review. No open source license is granted.
@@ -116,7 +120,3 @@ The client owns this code and agreed to share it for portfolio review. No open s
 ## About me
 
 I'm Ali Hassan, a full-stack engineer working with Laravel, React, Next.js, and Node.js. See more of my work on my [portfolio](https://ali-hassan-dev.netlify.app/upwork), or [work with me on Upwork](https://www.upwork.com/freelancers/~0110268fa5a62812e0).
-
-## After delivery
-
-The version delivered to the client is tagged `v1.0-delivered`. Later commits add permission hardening, 100+ automated tests, CI, and demo data for this public copy. The app was then upgraded from Laravel 11 to Laravel 13 and from Tailwind CSS 3 to 4, with the full test suite passing at every step.
